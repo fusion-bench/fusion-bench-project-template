@@ -1,0 +1,11 @@
+fusion-bench>=0.2.3
+numpy
+matplotlib
+scipy
+torch
+lightning
+transformers
+datasets
+peft
+h5py
+scipy

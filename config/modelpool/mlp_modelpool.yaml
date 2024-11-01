@@ -1,0 +1,7 @@
+_target_: src.modelpool.MLPModelPool
+
+models:
+  _pretrained_:
+    _target_: src.models.mlp.create_mlp
+    input_dim: 784
+    output_dim: 10
