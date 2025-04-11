@@ -17,6 +17,10 @@ Repository = "https://github.com/fusion-bench/fusion-bench-project-template"
 Homepage = "https://github.com/fusion-bench/fusion-bench-project-template"
 Issues = "https://github.com/fusion-bench/fusion-bench-project-template/issues"
 
+[tool.setuptools]
+include-package-data = true
+package-dir = { "src" = "src" }
+
 [project.scripts]
 run = "src.scripts.cli:main"
 
