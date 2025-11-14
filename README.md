@@ -156,6 +156,8 @@ conda activate myenv
 
 # install requirements
 pip install -r requirements.txt
+# install project as editable package (edit pyproject.toml as needed)
+pip install -e .
 ```
 
 #### Conda
