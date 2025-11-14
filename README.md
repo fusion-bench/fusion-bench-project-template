@@ -195,4 +195,4 @@ bash scripts/run_experiments.sh
 
 ## Acknowledgement
 
-This project is based on [FusionBench](https://github.com/tanganke/fusion_bench).
+This project is based on [FusionBench](https://github.com/tanganke/fusion_bench) and created using [FusionBench Project Template](https://github.com/fusion-bench/fusion-bench-project-template).
