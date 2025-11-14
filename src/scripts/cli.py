@@ -24,7 +24,7 @@ def _get_default_config_path():
 
 @hydra.main(
     config_path=_get_default_config_path(),
-    config_name="fabric_model_fusion",
+    config_name="main",
     version_base=None,
 )
 def main(cfg: DictConfig) -> None:
