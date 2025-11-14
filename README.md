@@ -66,6 +66,49 @@ The directory structure of new project looks like this:
 └── README.md
 ```
 
+
+## The FusionBench Workflow
+
+FusionBench follows a three-component architecture to perform model fusion experiments:
+
+```mermaid
+graph LR
+    CLI[fusion_bench CLI] --> Hydra[Hydra Config]
+    Hydra --> Program[Program]
+    
+    Program --> MP[ModelPool<br/>Manages Models<br/>& Datasets]
+    Program --> Method[Method<br/>Fusion Algorithm]
+    Program --> TP[TaskPool<br/>Evaluation Tasks]
+    
+    MP --> Method
+    Method --> Merged[Merged Model]
+    Merged --> TP
+    TP --> Report[Evaluation Report]
+    
+    style CLI fill:#e1f5e1
+    style Hydra fill:#f0e1ff
+    style Method fill:#ffe1f0
+    style Merged fill:#fff4e1
+    style Report fill:#e1f0ff
+```
+
+**Key Components:**
+
+1. **CLI**: Entry point using Hydra for configuration management
+2. **Program**: Orchestrates the fusion workflow (e.g., `FabricModelFusionProgram`)
+3. **ModelPool**: Manages task-specific models and their datasets
+4. **Method**: Implements the fusion algorithm (e.g., Simple Average, Task Arithmetic, AdaMerging)
+5. **TaskPool**: Evaluates the merged model on benchmark tasks
+
+**Workflow Steps:**
+
+1. User runs `fusion_bench` with config overrides
+2. Hydra loads YAML configs for method, modelpool, and taskpool
+3. Program instantiates all three components
+4. Method executes fusion algorithm on ModelPool
+5. TaskPool evaluates the merged model
+6. Results are saved and reported
+
 ## Acknowledgement
 
 This template is motivated by [Lightning-Hydra-Template](https://github.com/ashleve/lightning-hydra-template).
@@ -105,7 +148,7 @@ git clone https://github.com/YourGithubName/your-repo-name
 cd your-repo-name
 
 # [OPTIONAL] create conda environment
-conda create -n myenv python=3.12
+conda create -n myenv python=3.12 # recommend python 3.12+
 conda activate myenv
 
 # install pytorch according to instructions
@@ -135,7 +178,7 @@ run my method
 
 ```shell
 fusion_bench \
-    --config-path $PWD/config --config-name main \
+    --config-name main \
     # method=...
     # method.option_1=...
     # modelpool=...
@@ -147,3 +190,7 @@ or
 ```shell
 bash scripts/run_experiments.sh
 ```
+
+## Acknowledgement
+
+This project is based on [FusionBench](https://github.com/tanganke/fusion_bench).
